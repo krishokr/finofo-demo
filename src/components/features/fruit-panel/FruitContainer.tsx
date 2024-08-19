@@ -12,7 +12,7 @@ export const FruitContainer = () => {
     string | undefined
     >();
   
-  const { data } = useFruitQuery();
+  const { data: fruit } = useFruitQuery();
 
   const handleClick = (fruitType: string) => {
     return fruitType;

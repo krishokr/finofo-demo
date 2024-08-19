@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query"
-import { baseURL, allFruit, fruitFamily, fruitGenus, fruitOrder } from "./endpoints"
 import axios from "axios";
 
 const api = axios.create({
