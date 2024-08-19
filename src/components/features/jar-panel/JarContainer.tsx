@@ -13,6 +13,10 @@ export const JarContainer: React.FC<TJarContainer> = ({ fruitJar, setFruitJar })
         const _fruitJar = fruitJar.filter(fruit => fruit.id !== fruitItem.id)
         return setFruitJar(_fruitJar);
     }
+
+    const totalCalories = fruitJar.reduce((total, fruitItem) => {
+        return total += fruitItem.nutritions.calories
+    },0)
     
     return <div className="w-full text-center">
         <h1>Fruit Jar</h1>
@@ -23,5 +27,6 @@ export const JarContainer: React.FC<TJarContainer> = ({ fruitJar, setFruitJar })
                 </>} />)
             }
         </div>
+        <h1>Total calories: {totalCalories}</h1>
     </div>
 }
