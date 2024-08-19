@@ -1,5 +1,5 @@
 import { SelectItems } from "@/components/common/SelectItems";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FruitItem } from "./FruitItem";
 import { SingleAccordion } from "@/components/common/SingleAccordion";
 import { useFruitQuery } from "@/data-provider/query-service";
@@ -8,23 +8,30 @@ import { useFruitGroupigns } from "@/hooks/useFruitGroupings";
 
 type TFruitContainerProps = {
   updateFruitJar: (prev: React.SetStateAction<TFruit[]>) => void;
+  fruitJar: TFruit[]
 }
 
 const groupings = ["None", "Family", "Genus", "Order"];
 const DEFAULT_GROUPING = groupings[0];
 
-export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar}) => {
+export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, fruitJar}) => {
   const [selectedGrouping, setSelectedGrouping] = useState<
     TGrouping | ''
     >('');
   
-  const { data: fruit, isLoading, isError } = useFruitQuery();
+  const { data: fruitData, isLoading, isError } = useFruitQuery();
 
   const fruitGroupings = useFruitGroupigns(selectedGrouping.toLowerCase() as TGrouping)
 
   const handleClick = (fruit: TFruit) => {
     return updateFruitJar((prev: TFruit[]) => [...prev, fruit])
   };
+
+  const isInFruitJar = (fruit: TFruit) => fruitJar?.some(jaredFruit => jaredFruit.id === fruit.id)
+
+  useEffect(() => {
+    console.log(fruitJar)
+  },[])
 
   if (isLoading) return <h1>loading...</h1>
   if (isError) return <h1>Something went wrong fetching fruit.</h1>
@@ -40,11 +47,12 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar})
       />
       <div className="overflow-y-scroll h-[500px] p-4 my-4">
         {!selectedGrouping || selectedGrouping === DEFAULT_GROUPING ? (
-          fruit?.map((fruit: TFruit, i: number) => (
+          fruitData?.map((fruit: TFruit, i: number) => (
             <FruitItem
               key={`${fruit} - ${i}`}
               fruit={fruit}
               handleClick={() => handleClick(fruit)}
+              isDisabled={isInFruitJar(fruit)}
             />
           ))
         ) : (
@@ -57,6 +65,7 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar})
                     key={`${fruit} - ${i}`}
                     fruit={fruit}
                     handleClick={() => handleClick(fruit)}
+                    isDisabled={isInFruitJar(fruit)}
                   />
                 ))}
               </div>
