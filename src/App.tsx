@@ -1,6 +1,6 @@
 import "./App.css";
-import { FruitContainer } from "./containers/FruitContainer/FruitContainer";
-import { JarContainer } from "./containers/JarContainer/JarContainer";
+import { FruitContainer } from "./components/features/fruit-panel/FruitContainer";
+import { JarContainer } from "./components/features/jar-panel/JarContainer";
 
 function App() {
   return (
