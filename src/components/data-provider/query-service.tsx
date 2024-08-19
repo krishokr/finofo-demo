@@ -1,5 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
 import { baseURL, allFruit, fruitFamily, fruitGenus, fruitOrder } from "./endpoints"
+import axios from "axios";
+
+const api = axios.create({
+    baseURL: 'http://localhost:4000'
+  });
 
 enum queryKeys {
     fruit = "fruit",
@@ -11,8 +16,8 @@ export const useFruitQuery = () => {
     return useQuery({
         queryKey: [queryKeys.fruit],
         queryFn: async () => {
-            const response = await fetch('https://www.fruityvice.com/api/fruit/all')
-            return response.json()
+            const response = await api.get('/api/fruits')
+            return response.data
         }
     })
 }
@@ -21,8 +26,8 @@ export const useFruitFamilyQuery = (family: string) => {
     return useQuery({
         queryKey: [queryKeys.family],
         queryFn: async () => {
-            const response = await fetch(baseURL + fruitFamily(family))
-            return response.json()
+            const response = await api.get(`/api/family/${family}`)
+            return response.data
         }
     })
 }
@@ -31,8 +36,8 @@ export const useFruitGenusQuery = (genus: string) => {
     return useQuery({
         queryKey: [queryKeys.genus],
         queryFn: async () => {
-            const response = await fetch(baseURL + fruitGenus(genus))
-            return response.json()
+            const response = await api.get(`/api/genus/${genus}`)
+            return response.data
         }
     })
 }
@@ -41,8 +46,8 @@ export const useFruitOrderQuery = (order: string) => {
     return useQuery({
         queryKey: [queryKeys.order],
         queryFn: async () => {
-            const response = await fetch(baseURL + fruitOrder(order))
-            return response.json()
+            const response = await api.get(`/api/order/${order}`)
+            return response.data
         }
     })
 }
