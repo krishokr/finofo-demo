@@ -14,3 +14,5 @@ export type TFruit = {
   order: string;
   nutritions: TNutritions;
 };
+
+export type TGrouping = "None" | "Family" | "Genus" | "Order";

@@ -5,12 +5,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { TFruit, TGrouping } from "@/types";
 
 // Generic component for reusability
 type TSelectItems = {
-  items: string[];
-  selectedItem?: string;
-  setSelectedItem: (item?: string) => void;
+  items: TGrouping[];
+  selectedItem: string;
+  setSelectedItem: (item: TGrouping) => void;
   placeholder: string;
 };
 
@@ -20,8 +21,9 @@ export const SelectItems: React.FC<TSelectItems> = ({
   setSelectedItem,
   placeholder,
 }) => {
-  const handleValueChange = (item: string) => setSelectedItem(item);
+  const handleValueChange = (item: string) => setSelectedItem(item as TGrouping);
 
+  console.log(items)
   return (
     <Select
       onValueChange={handleValueChange}
@@ -33,7 +35,7 @@ export const SelectItems: React.FC<TSelectItems> = ({
       </SelectTrigger>
       <SelectContent>
         {items.map((item, i) => (
-          <SelectItem key={`item ${i}`} value={item}>
+          <SelectItem key={`${item} - ${i}`} value={item}>
             {item}
           </SelectItem>
         ))}
