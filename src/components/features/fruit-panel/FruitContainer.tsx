@@ -1,18 +1,18 @@
 import { SelectItems } from "@/components/common/SelectItems";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FruitItem } from "./FruitItem";
 import { SingleAccordion } from "@/components/common/SingleAccordion";
 import { useFruitQuery } from "@/data-provider/query-service";
 import { TFruit } from "@/types";
 
 type TFruitContainerProps = {
-  setFruitJar: (prev: CallableFunction) => void;
+  updateFruitJar: (prev: React.SetStateAction<TFruit[]>) => void;
 }
 
 const groupings = ["None", "Family", "Genus", "Order"];
 const DEFAULT_GROUPING = groupings[0];
 
-export const FruitContainer: React.FC<TFruitContainerProps> = ({setFruitJar}) => {
+export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar}) => {
   const [selectedGrouping, setSelectedGrouping] = useState<
     string | undefined
     >();
@@ -20,7 +20,7 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({setFruitJar}) =>
   const { data: fruit, isLoading, isError } = useFruitQuery();
 
   const handleClick = (fruit: TFruit) => {
-    return setFruitJar((prev: TFruit[]) => [...prev, fruit])
+    return updateFruitJar((prev: TFruit[]) => [...prev, fruit])
   };
 
   if (isLoading) return <h1>loading...</h1>

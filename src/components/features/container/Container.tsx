@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FruitContainer } from "../fruit-panel/FruitContainer";
 import { JarContainer } from "../jar-panel/JarContainer";
+import { TFruit } from "@/types";
 
 export const Container = () => {
-    const [jar, setJar] = useState([])
+  const [fruitJar, updateFruitJar] = useState<TFruit[]>([])
 
   return (
     <div className="w-full flex justify-between">
-          <FruitContainer setJar={setJar} />
-          <JarContainer jar={jar} />
+          <FruitContainer updateFruitJar={updateFruitJar} />
+          <JarContainer fruitJar={fruitJar} />
     </div>
   );
 };
