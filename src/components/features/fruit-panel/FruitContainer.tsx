@@ -2,21 +2,29 @@ import { SelectItems } from "@/components/common/SelectItems";
 import { useState } from "react";
 import { FruitItem } from "./FruitItem";
 import { SingleAccordion } from "@/components/common/SingleAccordion";
-import { useFruitQuery } from "@/components/data-provider/query-service";
+import { useFruitQuery } from "@/data-provider/query-service";
+import { TFruit } from "@/types";
+
+type TFruitContainerProps = {
+  setFruitJar: (prev: CallableFunction) => void;
+}
 
 const groupings = ["None", "Family", "Genus", "Order"];
 const DEFAULT_GROUPING = groupings[0];
 
-export const FruitContainer = () => {
+export const FruitContainer: React.FC<TFruitContainerProps> = ({setFruitJar}) => {
   const [selectedGrouping, setSelectedGrouping] = useState<
     string | undefined
     >();
   
-  const { data: fruit } = useFruitQuery();
+  const { data: fruit, isLoading, isError } = useFruitQuery();
 
-  const handleClick = (fruitType: string) => {
-    return fruitType;
+  const handleClick = (fruit: TFruit) => {
+    return setFruitJar((prev: TFruit[]) => [...prev, fruit])
   };
+
+  if (isLoading) return <h1>loading...</h1>
+  if (isError) return <h1>Something went wrong fetching fruit.</h1>
 
   return (
     <div className="w-full text-center m-4">
@@ -29,12 +37,11 @@ export const FruitContainer = () => {
       />
       <div>
         {!selectedGrouping || selectedGrouping === DEFAULT_GROUPING ? (
-          fruit.map((fruit, i) => (
+          fruit.map((fruit: TFruit, i: number) => (
             <FruitItem
               key={`${fruit} - ${i}`}
-              fruitType={fruit}
+              fruit={fruit}
               handleClick={() => handleClick(fruit)}
-              calories={"100"}
             />
           ))
         ) : (
@@ -42,12 +49,11 @@ export const FruitContainer = () => {
             header={selectedGrouping}
             content={
               <div>
-                {fruit.map((fruit, i) => (
+                {fruit.map((fruit: TFruit, i: number) => (
                   <FruitItem
                     key={`${fruit} - ${i}`}
-                    fruitType={fruit}
+                    fruit={fruit}
                     handleClick={() => handleClick(fruit)}
-                    calories={"100"}
                   />
                 ))}
               </div>
