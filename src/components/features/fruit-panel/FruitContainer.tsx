@@ -35,7 +35,7 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar})
         setSelectedItem={setSelectedGrouping}
         placeholder="Group By"
       />
-      <div>
+      <div className="overflow-y-scroll h-[500px] p-4 my-4">
         {!selectedGrouping || selectedGrouping === DEFAULT_GROUPING ? (
           fruit.map((fruit: TFruit, i: number) => (
             <FruitItem
@@ -59,8 +59,8 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar})
               </div>
             }
           />
-        )}
-      </div>
+          )}
+          </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FruitContainer } from "../fruit-panel/FruitContainer";
 import { JarContainer } from "../jar-panel/JarContainer";
 import { TFruit } from "@/types";
