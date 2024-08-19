@@ -21,36 +21,3 @@ export const useFruitQuery = () => {
         }
     })
 }
-
-export const useFruitFamilyQuery = (family: string, enabled?: { enabled?: boolean }) => {
-    return useQuery({
-        queryKey: [queryKeys.family],
-        queryFn: async () => {
-            const response = await api.get(`/api/family/${family}`)
-            return response.data
-        },
-        ...enabled
-    })
-}
-
-export const useFruitGenusQuery = (genus: string, enabled?: { enabled?: boolean }) => {
-    return useQuery({
-        queryKey: [queryKeys.genus],
-        queryFn: async () => {
-            const response = await api.get(`/api/genus/${genus}`)
-            return response.data
-        },
-        ...enabled
-    })
-}
-
-export const useFruitOrderQuery = (order: string, enabled?: { enabled?: boolean }) => {
-    return useQuery({
-        queryKey: [queryKeys.order],
-        queryFn: async () => {
-            const response = await api.get(`/api/order/${order}`)
-            return response.data
-        },
-        ...enabled
-    })
-}

@@ -29,10 +29,6 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
 
   const isInFruitJar = (fruit: TFruit) => fruitJar?.some(jaredFruit => jaredFruit.id === fruit.id)
 
-  useEffect(() => {
-    console.log(fruitJar)
-  },[])
-
   if (isLoading) return <h1>loading...</h1>
   if (isError) return <h1>Something went wrong fetching fruit.</h1>
 
