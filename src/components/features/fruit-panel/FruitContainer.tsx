@@ -1,17 +1,38 @@
 import { SelectItems } from "@/components/common/SelectItems";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FruitItem } from "./FruitItem";
 import { SingleAccordion } from "@/components/common/SingleAccordion";
+import { useQuery } from "@tanstack/react-query";
+import { useFruitQuery } from "@/components/data-provider/query-service";
+import axios from "axios";
+
 
 const groupings = ["None", "Family", "Genus", "Order"];
 const DEFAULT_GROUPING = groupings[0];
 
 const fruit = ["orange", "pineapple"];
 
+const api = axios.create({
+  baseURL: 'http://localhost:4000'
+});
+
 export const FruitContainer = () => {
   const [selectedGrouping, setSelectedGrouping] = useState<
     string | undefined
-  >();
+    >();
+  
+  // const { data } = useFruitQuery();
+
+  useEffect(() => {
+    api.get('/api/fruits')
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  }, []);
+
   const handleClick = (fruitType: string) => {
     return fruitType;
   };
