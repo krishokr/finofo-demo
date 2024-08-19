@@ -1,10 +1,11 @@
 import { SelectItems } from "@/components/common/SelectItems";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FruitItem } from "./FruitItem";
 import { SingleAccordion } from "@/components/common/SingleAccordion";
 import { useFruitQuery } from "@/data-provider/query-service";
 import { TFruit, TGrouping } from "@/types";
 import { useFruitGroupigns } from "@/hooks/useFruitGroupings";
+import { PlusIcon } from "@radix-ui/react-icons";
 
 type TFruitContainerProps = {
   updateFruitJar: (prev: React.SetStateAction<TFruit[]>) => void;
@@ -49,6 +50,7 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
               fruit={fruit}
               handleClick={() => handleClick(fruit)}
               isDisabled={isInFruitJar(fruit)}
+              buttonContent={<>Add <PlusIcon /></>}
             />
           ))
         ) : (
@@ -62,6 +64,7 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
                     fruit={fruit}
                     handleClick={() => handleClick(fruit)}
                     isDisabled={isInFruitJar(fruit)}
+                    buttonContent={<>Add <PlusIcon /></>}
                   />
                 ))}
               </div>

@@ -9,7 +9,7 @@ export const Container = () => {
   return (
     <div className="w-full flex justify-between">
           <FruitContainer updateFruitJar={updateFruitJar} fruitJar={fruitJar}/>
-          <JarContainer fruitJar={fruitJar} />
+          <JarContainer fruitJar={fruitJar} setFruitJar={updateFruitJar}/>
     </div>
   );
 };
