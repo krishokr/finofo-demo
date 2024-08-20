@@ -20,6 +20,7 @@ export const JarContainer: React.FC<TJarContainer> = ({ fruitJar, setFruitJar })
     
     return <div className="w-full m-4 flex flex-col">
         <h1 className="text-center text-xl">Fruit Jar</h1>
+        <h1 className="bg-primary rounded text-white p-2 m-2">Total calories: {totalCalories} kcal</h1>
         <div className="overflow-y-scroll sm:h-[500px] md:h-[575px] p-4 my-4">
             {
                 fruitJar.map((item,i) => <FruitItem key={`${i} - ${item}`}  fruit={item} handleClick={() => removeFruit(item)} buttonContent={<>
@@ -27,6 +28,5 @@ export const JarContainer: React.FC<TJarContainer> = ({ fruitJar, setFruitJar })
                 </>} />)
             }
         </div>
-        <h1 className="bg-primary rounded text-white p-2 justify-items-end">Total calories: {totalCalories} kcal</h1>
     </div>
 }
