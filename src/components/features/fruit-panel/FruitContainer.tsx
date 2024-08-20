@@ -6,6 +6,7 @@ import { useFruitQuery } from "@/data-provider/query-service";
 import { TFruit, TGrouping } from "@/types";
 import { useFruitGroupigns } from "@/hooks/useFruitGroupings";
 import { PlusIcon } from "@radix-ui/react-icons";
+import { Button } from "@/components/ui/button";
 
 type TFruitContainerProps = {
   updateFruitJar: (prev: React.SetStateAction<TFruit[]>) => void;
@@ -30,8 +31,15 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
 
   const isInFruitJar = (fruit: TFruit) => fruitJar?.some(jaredFruit => jaredFruit.id === fruit.id)
 
+  const addGroup = (fruitGroup: TFruit[]) => {
+    console.log(fruitGroup)
+    return updateFruitJar(prev => [...prev, ...fruitGroup])
+  }
+
   if (isLoading) return <h1>loading...</h1>
   if (isError) return <h1>Something went wrong fetching fruit.</h1>
+
+  // disabled={fruitJar.every(fruitItem => fruitGroupings[grouping].some((fruitGroupItem: TFruit) => fruitGroupItem.id === fruitItem.id))}
 
   return (
     <div className="w-full text-center m-4">
@@ -54,8 +62,12 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
             />
           ))
         ) : (
-          Object.keys(fruitGroupings).map(grouping => <SingleAccordion
-            header={grouping}
+            Object.keys(fruitGroupings).map((grouping, i) => <SingleAccordion
+            key={`${fruitGroupings[grouping]} - ${i}`}
+            header={<div className="flex justify-between w-full m-2">
+              <p>{grouping}</p>
+              <p className="border-2 p-2 rounded hover-bg-slate-700" onClick={() => addGroup(fruitGroupings[grouping])}>Add group</p>
+            </div>}
             content={
               <div>
                 {fruitGroupings[grouping]?.map((fruit: TFruit, i: number) => (
