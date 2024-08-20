@@ -15,9 +15,13 @@ Have you ever wanted to learn about your favorite fruits? This app does just tha
 1. `git clone https://github.com/krishokr/finofo-demo.git`
 2. `cd finofo-demo`
 3. `npm install`
-4. Two terminals:
-   i. `npm run dev` to start UI
-   ii. `node server.ts` to start proxy server
+Start UI:
+1. `npm run dev`
+
+Start proxy server in new terminal:
+1. `cd finofo-demo/server`
+2. `npm install`
+3. `node server.ts`
 
 ### Demo
 https://github.com/user-attachments/assets/e58ed930-0647-4113-ad70-2f1c17a2b349
