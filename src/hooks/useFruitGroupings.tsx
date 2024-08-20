@@ -1,19 +1,22 @@
 
 import { useFruitQuery } from "@/data-provider/query-service";
-import { TFruit, TGrouping } from "@/types";
+import { TFruit } from "@/types";
 
-export const useFruitGroupigns = (groupType: TGrouping) => {
-    const { data: fruit } = useFruitQuery();
+type TFruitGrouping = {
+    [key: string]: TFruit[];
+}
 
-    if (!groupType || groupType === "none") return {}
+export const useFruitGroupigns = (groupType: string): TFruitGrouping => {
+    const { data: fruitData } = useFruitQuery();
 
-    const uniqueFruitTypes = [...new Set(fruit?.map(fruit => fruit[groupType].trim()))]
+    if (!groupType || groupType === "none" || !fruitData) return {}
 
+    const fruitGroupNames: string[] = [...new Set(fruitData?.map(fruit => (fruit[groupType as keyof TFruit] as string).trim()))]
 
-    const fruitGrouping = uniqueFruitTypes.reduce((fruitGrouping, uniqueFruitType) => {
-        fruitGrouping[uniqueFruitType] = fruit?.filter(fruit => fruit[groupType] === uniqueFruitType);
-        return fruitGrouping
-    }, {})
+    const groupings = fruitGroupNames.reduce((fruitGroupings, groupName) => {
+        fruitGroupings[groupName] = fruitData.filter(fruit => fruit[groupType as keyof TFruit] === groupName);
+        return fruitGroupings
+    }, {} as TFruitGrouping)
 
-    return fruitGrouping
+    return groupings
 }
