@@ -40,9 +40,9 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
         items={groupings as TGrouping[]}
         selectedItem={selectedGrouping}
         setSelectedItem={setSelectedGrouping}
-        placeholder="Group By"
+        placeholder="Group by"
       />
-      <div className="overflow-y-scroll h-[500px] p-4 my-4">
+      <div className="overflow-y-scroll sm:h-[500px] md:h-[575px] p-4 my-4">
         {!selectedGrouping || selectedGrouping === DEFAULT_GROUPING ? (
           fruitData?.map((fruit: TFruit, i: number) => (
             <FruitItem

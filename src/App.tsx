@@ -14,7 +14,6 @@ function App() {
   return (
     <QueryClientProvider client={queryClient} >
       <div className="h-screen w-screen">
-        <h1>Finofo Demo</h1>
         <Container />
       </div>
       <ReactQueryDevtools initialIsOpen={false} />

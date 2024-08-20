@@ -18,15 +18,15 @@ export const JarContainer: React.FC<TJarContainer> = ({ fruitJar, setFruitJar })
         return total += fruitItem.nutritions.calories
     },0)
     
-    return <div className="w-full text-center">
-        <h1>Fruit Jar</h1>
-        <div className="overflow-y-scroll h-[500px] p-4 my-4">
+    return <div className="w-full m-4 flex flex-col">
+        <h1 className="text-center">Fruit Jar</h1>
+        <div className="overflow-y-scroll sm:h-[500px] md:h-[575px] p-4 my-4">
             {
                 fruitJar.map(item => <FruitItem fruit={item} handleClick={() => removeFruit(item)} buttonContent={<>
                     Remove <MinusIcon />
                 </>} />)
             }
         </div>
-        <h1>Total calories: {totalCalories}</h1>
+        <h1 className="bg-primary rounded text-white p-2 justify-items-end">Total calories: {totalCalories} kcal</h1>
     </div>
 }

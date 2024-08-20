@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TFruit, TGrouping } from "@/types";
+import { TGrouping } from "@/types";
 
 // Generic component for reusability
 type TSelectItems = {
@@ -23,12 +23,11 @@ export const SelectItems: React.FC<TSelectItems> = ({
 }) => {
   const handleValueChange = (item: string) => setSelectedItem(item as TGrouping);
 
-  console.log(items)
   return (
     <Select
       onValueChange={handleValueChange}
       value={selectedItem}
-      defaultValue={selectedItem}
+      defaultValue="None"
     >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder={placeholder} />
