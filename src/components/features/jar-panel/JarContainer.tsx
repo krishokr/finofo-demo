@@ -8,7 +8,6 @@ type TJarContainer = {
 }
 
 export const JarContainer: React.FC<TJarContainer> = ({ fruitJar, setFruitJar }) => {
-
     const removeFruit = (fruitItem: TFruit) => {
         const _fruitJar = fruitJar.filter(fruit => fruit.id !== fruitItem.id)
         return setFruitJar(_fruitJar);
@@ -16,7 +15,7 @@ export const JarContainer: React.FC<TJarContainer> = ({ fruitJar, setFruitJar })
 
     const totalCalories = fruitJar.reduce((total, fruitItem) => {
         return total += fruitItem.nutritions.calories
-    },0)
+    }, 0)
     
     return <div className="w-full m-4 flex flex-col">
         <h1 className="text-center text-xl">Fruit Jar</h1>
