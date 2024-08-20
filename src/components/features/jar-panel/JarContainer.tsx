@@ -19,7 +19,7 @@ export const JarContainer: React.FC<TJarContainer> = ({ fruitJar, setFruitJar })
     },0)
     
     return <div className="w-full m-4 flex flex-col">
-        <h1 className="text-center">Fruit Jar</h1>
+        <h1 className="text-center text-xl">Fruit Jar</h1>
         <div className="overflow-y-scroll sm:h-[500px] md:h-[575px] p-4 my-4">
             {
                 fruitJar.map((item,i) => <FruitItem key={`${i} - ${item}`}  fruit={item} handleClick={() => removeFruit(item)} buttonContent={<>

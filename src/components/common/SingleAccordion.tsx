@@ -7,7 +7,7 @@ import {
 import { ReactNode } from "react";
 
 type TSingleAccordion = {
-  header: ReactNode;
+  header: ReactNode | string;
   content: ReactNode;
 };
 
