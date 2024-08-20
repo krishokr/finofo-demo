@@ -32,8 +32,8 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
   const isInFruitJar = (fruit: TFruit) => fruitJar?.some(jaredFruit => jaredFruit.id === fruit.id)
 
   const addGroup = (fruitGroup: TFruit[]) => {
-    console.log(fruitGroup)
-    return updateFruitJar(prev => [...prev, ...fruitGroup])
+    const uniqueFruit = fruitGroup.filter(fruitItem => !fruitJar.some(jarFruitItem => jarFruitItem.id === fruitItem.id))
+    return updateFruitJar(prev => [...prev, ...uniqueFruit])
   }
 
   const isGroupDisabled = (selectedFruitGroup: TFruit[]) => {
