@@ -12,11 +12,12 @@ Have you ever wanted to learn about your favorite fruits? This app does just tha
 - Tailwind
 
 #### Getting started
-1. `git clone https://github.com/krishokr/finofo-demo.git`
-2. `cd finofo-demo`
-3. `npm install`
+`git clone https://github.com/krishokr/finofo-demo.git`
+
 Start UI:
-1. `npm run dev`
+1. `cd finofo-demo`
+2. `npm install`
+3. `npm run dev`
 
 Start proxy server in new terminal:
 1. `cd finofo-demo/server`
