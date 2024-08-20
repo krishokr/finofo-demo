@@ -36,10 +36,12 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
     return updateFruitJar(prev => [...prev, ...fruitGroup])
   }
 
+  const isGroupDisabled = (selectedFruitGroup: TFruit[]) => {
+    return selectedFruitGroup.every(fruitItem => fruitJar.some(jarFruitItem => jarFruitItem.id === fruitItem.id))
+  }
+
   if (isLoading) return <h1>loading...</h1>
   if (isError) return <h1>Something went wrong fetching fruit.</h1>
-
-  const isGroupDisabled = (grouping: TGroup) => 
 
   return (
     <div className="w-full text-center m-4">
@@ -66,7 +68,7 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({updateFruitJar, 
             key={`${fruitGroupings[grouping]} - ${i}`}
             header={<div className="flex justify-between w-full m-2">
               <p>{grouping}</p>
-              <Button disabled={() => isGroupDisabled(fruitGroupings[grouping])} className="p-2 rounded bg-primary text-white hover:opacity-50" onClick={() => addGroup(fruitGroupings[grouping])}>Add group</Button>
+              <Button disabled={isGroupDisabled(fruitGroupings[grouping])} className="p-2 rounded bg-primary text-white hover:opacity-50" onClick={() => addGroup(fruitGroupings[grouping])}>Add group</Button>
             </div>}
             content={
               <div>
