@@ -18,7 +18,6 @@ app.get('/api/fruits', async (req, res) => {
 
 app.get('/api/family/:family', async (req, res) => {
     const { family } = req.params;
-    console.log(family)
     try {
       const response = await axios.get(BASE_URL + `/family/${family}`);
       res.json(response.data);

@@ -7,6 +7,7 @@ import { TFruit, TGrouping } from "@/types";
 import { useFruitGroupigns } from "@/hooks/useFruitGroupings";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
+import Spinner from "@/components/ui/spinner";
 
 type TFruitContainerProps = {
   updateFruitJar: (prev: React.SetStateAction<TFruit[]>) => void;
@@ -49,7 +50,7 @@ export const FruitContainer: React.FC<TFruitContainerProps> = ({
     );
   };
 
-  if (isLoading) return <h1>loading...</h1>;
+  if (isLoading) return <Spinner />
   if (isError) return <h1>Something went wrong fetching fruit.</h1>;
 
   return (
