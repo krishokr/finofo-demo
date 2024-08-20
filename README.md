@@ -1,4 +1,4 @@
-# Fruit Jar App
+# Finofo Demo
 
 ## Features
 Have you ever wanted to learn about your favorite fruits? This app does just that! Learn about the Genus, Order, and Family that belongs to your favorite fruit.
@@ -12,19 +12,33 @@ Have you ever wanted to learn about your favorite fruits? This app does just tha
 - Tailwind
 
 #### Getting started
-`git clone https://github.com/krishokr/finofo-demo.git`
+```
+git clone https://github.com/krishokr/finofo-demo.git
+```
 
 Start UI:
-1. `cd finofo-demo`
-2. `npm install`
-3. `npm run dev`
+```
+cd finofo-demo
+```
+```
+npm install
+```
+```
+npm run dev
+```
 
 Start proxy server in new terminal:
-1. `cd finofo-demo/server`
-2. `npm install`
-3. `node server.ts`
+```
+cd finofo-demo/server
+```
+```
+npm install
+```
+```
+node server.ts
+```
 
-### Demo
+### Video demo
 https://github.com/user-attachments/assets/e58ed930-0647-4113-ad70-2f1c17a2b349
 
 ### Challenges and Decisions
